@@ -135,6 +135,8 @@ class Task:
 
         self.start_execution_time = time.time()
 
+        print 'Executing: ', self.id_t
+
         thread = Thread(target = self._execute, args = [None])
         thread.start()
         thread.join()
@@ -244,6 +246,8 @@ def verify_tangle(iota, tasks):
             m = TryteString(msg_t)
             msg = m.decode()
 
+            print 'Found task: ', tag
+
             tasks.add_task(tag, msg)
         else:
             print 'No new tasks...'
@@ -266,7 +270,8 @@ def is_task_exist(task_list, task):
 SEED   = 'WXBTI9EVKNBEMBWMQUVOKALPQZGURKXQUUOZMGLIPIPU99RCYSPPIOQN9SJSPTDZVIIXKPRJQIVQARINL'
 
 # Let's create our connection to the node.
-iota = MyIOTA('http://localhost:14265', SEED)
+#iota = MyIOTA('http://localhost:14265', SEED)
+iota = MyIOTA('http://150.164.7.219:14265', SEED)
 #iota.enable_debug()
 
 iota.init_wallet()

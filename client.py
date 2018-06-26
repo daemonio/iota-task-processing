@@ -37,10 +37,13 @@ if len(sys.argv) < 2:
     sys.exit(0)
 
 # Let's create our connection.
-iota = MyIOTA('http://localhost:14265', SEED)
+#iota = MyIOTA('http://localhost:14265', SEED)
+iota = MyIOTA('http://150.164.7.219:14265', SEED)
 
 filename = sys.argv[1]
 dest_addr = iota.Address(sys.argv[2])
+
+print iota.get_node_info()
 
 # Init the wallet
 iota.init_wallet()
@@ -52,7 +55,10 @@ if iota.is_empty_wallet() or iota.is_all_addr_used():
 print 'Your total fund is: ', iota.get_total_fund()
 
 # any addr for source addr (where the server will respond to)
-source_addr = iota.get_any_addr()
+#source_addr = iota.get_any_addr()
+
+# any addr for source addr
+source_addr = iota.get_any_valid_addr()
 
 print 'Sending {0} to {1}...'.format(0, iota.s_addr(dest_addr))
 task_file = './{0}'.format(sys.argv[1])
