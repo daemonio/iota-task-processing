@@ -51,14 +51,13 @@ if iota.is_empty_wallet() or iota.is_all_addr_used():
 
 print 'Your total fund is: ', iota.get_total_fund()
 
-# any addr for source addr
+# any addr for source addr (where the server will respond to)
 source_addr = iota.get_any_addr()
 
 print 'Sending {0} to {1}...'.format(0, iota.s_addr(dest_addr))
 task_file = './{0}'.format(sys.argv[1])
 task_id = send_file(iota, task_file, source_addr, dest_addr)
 
-sys.exit()
 while True:
     print 'Receving...'
 
@@ -77,6 +76,7 @@ while True:
             tasks.add_task(tag, msg)
 
 
+        # TODO: send IOTA's to server
         #print '------', confirmed_t, addr_t, value_t
 
         print msg_t
